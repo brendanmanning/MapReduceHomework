@@ -24,27 +24,27 @@ public class WordCount
         }
 
         // Create a Hadoop job
-        Job wcJob = Job.getInstance(conf, "WordCount");
+        Job job = Job.getInstance(conf, "WordCount");
 
         // Connect the classes we created
-        wcJob.setJarByClass(WordCount.class);
-        wcJob.setMapperClass(WordCountMapper.class);
-        wcJob.setCombinerClass(WordCountReducer.class);
-        wcJob.setReducerClass(WordCountReducer.class);
-        wcJob.setNumReduceTasks(5);
+        job.setJarByClass(WordCount.class);
+        job.setMapperClass(WordCountMapper.class);
+        job.setCombinerClass(WordCountReducer.class);
+        job.setReducerClass(WordCountReducer.class);
+        job.setNumReduceTasks(5);
 
         // Use default input output classes
         // input: Text (Strings) - content from a book
         // output: IntWritable (int) - word counts
-        wcJob.setOutputKeyClass(Text.class);
-        wcJob.setOutputValueClass(IntWritable.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
 
         // Add the input file and output folder
-        FileInputFormat.addInputPath(wcJob, new Path(pathArgs[0]));
-        FileOutputFormat.setOutputPath(wcJob, new Path(pathArgs[1]));
+        FileInputFormat.addInputPath(job, new Path(pathArgs[0]));
+        FileOutputFormat.setOutputPath(job, new Path(pathArgs[1]));
 
         // Run and print the result & release an exit code
-        boolean success = wcJob.waitForCompletion(true);
+        boolean success = job.waitForCompletion(true);
         System.out.println(success ? "Run successful" : "Run unsuccessful");
         System.exit(success ? 1 : 0);
 

@@ -31,6 +31,7 @@ public class WordCount
         wcJob.setMapperClass(WordCountMapper.class);
         wcJob.setCombinerClass(WordCountReducer.class);
         wcJob.setReducerClass(WordCountReducer.class);
+        wcJob.setNumReduceTasks(5);
 
         // Use default input output classes
         // input: Text (Strings) - content from a book

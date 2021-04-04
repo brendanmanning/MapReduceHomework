@@ -38,12 +38,14 @@ public class WordCount
         wcJob.setOutputKeyClass(Text.class);
         wcJob.setOutputValueClass(IntWritable.class);
 
-        // Add the input file
+        // Add the input file and output folder
+        FileInputFormat.addInputPath(wcJob, new Path(pathArgs[0]));
+        FileOutputFormat.setOutputPath(wcJob, new Path(pathArgs[1]));
 
-        for (int i = 0; i < pathArgs.length - 1; ++i ) {
-            FileInputFormat.addInputPath(wcJob, new Path(pathArgs[i]));
-        }
-        FileOutputFormat.setOutputPath(wcJob, new Path(pathArgs[pathArgs.length - 1]));
-        System.exit(wcJob.waitForCompletion(true) ? 0 : 1);
+        // Run and print the result & release an exit code
+        boolean success = wcJob.waitForCompletion(true);
+        System.out.println(success ? "Run successful" : "Run unsuccessful");
+        System.exit(success ? 1 : 0);
+
     }
 }

@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    compile group: 'org.apache.hadoop', name: 'hadoop-hdfs', version: '2.2.0'
+    compile group: 'org.apache.hadoop', name: 'hadoop-common', version: '2.2.0'
+    compile group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-core', version: '2.2.0'
+}
+
+test {
+    useJUnitPlatform()
+}

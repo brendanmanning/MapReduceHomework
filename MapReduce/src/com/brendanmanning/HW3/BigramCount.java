@@ -33,7 +33,7 @@ public class BigramCount
         job.setCombinerClass(BigramCountReducer.class);
         job.setReducerClass(BigramCountReducer.class);
         //job.setSortComparatorClass(IntComparator.class);
-        //job.setNumReduceTasks(5);
+        job.setNumReduceTasks(5);
 
         // Use default input output classes
         // input: Text (Strings) - content from a book

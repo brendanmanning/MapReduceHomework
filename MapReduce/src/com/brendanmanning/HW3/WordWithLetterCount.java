@@ -31,7 +31,7 @@ public class WordWithLetterCount {
         job.setMapperClass(WordWithLetterCountMapper.class);
         job.setCombinerClass(WordWithLetterCountReducer.class);
         job.setReducerClass(WordWithLetterCountReducer.class);
-        //job.setNumReduceTasks(5);
+        job.setNumReduceTasks(5);
 
         // Use default input output classes
         // input: Text (Strings) - content from a book
